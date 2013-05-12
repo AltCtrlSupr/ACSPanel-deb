@@ -8,7 +8,7 @@
         DocumentRoot "%host_dir%/%name%/httpdocs"
         <Directory "%host_dir%/%name%/httpdocs">
                 Options FollowSymLinks ExecCGI Indexes
-                AllowOverride AuthConfig Limit
+                AllowOverride All
                 order allow,deny
                 Allow from All
         </Directory>
