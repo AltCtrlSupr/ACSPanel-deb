@@ -1,0 +1,16 @@
+#!/bin/bash
+
+FILES="libnss-mysql.cfg libnss-mysql-root.cfg"
+ETC=/etc
+ZETC=/etc/acspanel/users-mysql
+
+for FILE in $FILES; do
+	if [ -L "$ETC/$FILE" ]; then
+		if [ $(stat -c %N $ETC/$FILE|awk '{print substr($3,2,length($3)-2)}') == "$ZETC/$FILE" ]; then
+			rm -f $ETC/$FILE
+			if [ -e $ETC/$FILE.orig ]; then
+				mv $ETC/$FILE.orig $ETC/$FILE
+			fi
+		fi
+	fi
+done

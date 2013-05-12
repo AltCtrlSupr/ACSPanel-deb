@@ -11,8 +11,8 @@
 $commands = array(
     'echo $PWD',
     'whoami',
-    'cd /var/www/zaspanel; git pull',
-    'cd /var/www/zaspanel; git status',
+    'cd /var/www/acspanel; git pull',
+    'cd /var/www/acspanel; git status',
 );
 
 // Run the commands for output

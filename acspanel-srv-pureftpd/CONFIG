@@ -1,0 +1,7 @@
+PACKAGE=acspanel-srv-pureftpd
+VERSION=0.1.$(shell cat MINOR_VERSION)
+ARCH=all
+SECTION=ftp
+PRIORITY=optional
+DEPENDS=debconf,pure-ftpd-mysql
+MAINTAINER=ZUNbado <zunbado-acspanel@acs.li>

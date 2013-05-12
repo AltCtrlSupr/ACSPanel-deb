@@ -1,0 +1,19 @@
+Template: acspanel-srv-pdns/host
+Type: string
+Default:
+Description: MySQL Host for pdns
+
+Template: acspanel-srv-pdns/user
+Type: string
+Default:
+Description: MySQL User for pdns
+
+Template: acspanel-srv-pdns/password
+Type: password
+Default:
+Description: MySQL password for pdns
+
+Template: acspanel-srv-pdns/dbname
+Type: string
+Default:
+Description: MySQL Database for pdns

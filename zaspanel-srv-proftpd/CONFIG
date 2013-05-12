@@ -1,7 +1,0 @@
-PACKAGE=zaspanel-srv-proftpd
-VERSION=0.1.$(shell cat MINOR_VERSION)
-ARCH=all
-SECTION=ftp
-PRIORITY=optional
-DEPENDS=debconf,proftpd-mod-mysql
-MAINTAINER=ZUNbado <zunbado-zaspanel@acs.li>

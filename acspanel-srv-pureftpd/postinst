@@ -1,0 +1,33 @@
+#!/bin/bash
+. /usr/share/debconf/confmodule
+db_version 2.0
+db_capb backup
+
+keys=( server user password database )
+maxkeys=$((${#keys[@]} -1))
+
+index=0
+while [ "$index" -ge 0 -a "$index" -le $maxkeys ]; do
+		  db_input high acspanel-srv-pureftpd/${keys[$index]} || true
+		  if db_go; then
+			  index=$(($index + 1))
+		  else
+			  index=$(($index - 1))
+		  fi
+done
+
+for key in ${keys[*]}; do
+	db_get acspanel-srv-pureftpd/$key
+	value=$RET
+	if [ "x$value" != "x" ]; then
+		sed -i -re "s|^(MYSQL$key).*$|\1 $value|I" /etc/acspanel/pureftpd-srv/mysql.conf
+	fi
+done
+
+
+if [ ! -L /etc/pure-ftpd/db/mysql.conf ]; then
+	if [ -f /etc/pure-ftpd/db/mysql.conf ]; then
+		mv /etc/pure-ftpd/db/mysql.conf /etc/pure-ftpd/db/mysql.conf.orig
+	fi
+	ln -s /etc/acspanel/pureftpd-srv/mysql.conf /etc/pure-ftpd/db/mysql.conf
+fi

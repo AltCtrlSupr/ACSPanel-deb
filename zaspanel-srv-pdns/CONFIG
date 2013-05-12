@@ -1,7 +1,0 @@
-PACKAGE=zaspanel-srv-pdns
-VERSION=0.1.$(shell cat MINOR_VERSION)
-ARCH=all
-SECTION=dns
-PRIORITY=optional
-DEPENDS=debconf,pdns-server,pdns-backend-mysql
-MAINTAINER=ZUNbado <zunbado-zaspanel@acs.li>

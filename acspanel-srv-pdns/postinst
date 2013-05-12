@@ -1,0 +1,33 @@
+#!/bin/bash
+. /usr/share/debconf/confmodule
+db_version 2.0
+db_capb backup
+
+keys=( host dbname user password )
+maxkeys=$((${#keys[@]} -1))
+
+index=0
+while [ "$index" -ge 0 -a "$index" -le $maxkeys ]; do
+		  db_input high acspanel-srv-pdns/${keys[$index]} || true
+		  if db_go; then
+			  index=$(($index + 1))
+		  else
+			  index=$(($index - 1))
+		  fi
+done
+
+for key in ${keys[*]}; do
+	db_get acspanel-srv-pdns/$key
+	value=$RET
+	if [ "x$value" != "x" ]; then
+		sed -i -e "s|^gmysql-$key.*$|gmysql-$key=$value|" /etc/acspanel/pdns-srv/01-mysql.conf
+	fi
+done
+
+
+FILES="00-mysql-general.conf 01-mysql.conf 02-mysql-query.conf"
+for FILE in $FILES; do
+	if [ ! -L /etc/powerdns/pdns.d/$FILE ]; then
+		ln -s /etc/acspanel/pdns-srv/$FILE /etc/powerdns/pdns.d/$FILE
+	fi
+done

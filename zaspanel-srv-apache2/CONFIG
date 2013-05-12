@@ -1,7 +1,0 @@
-PACKAGE=zaspanel-srv-apache2
-VERSION=0.7.$(shell cat MINOR_VERSION)
-ARCH=all
-SECTION=web
-PRIORITY=optional
-DEPENDS=apache2,debconf,libconfig-std-perl,libapache2-mod-perl2,libdbd-mysql-perl
-MAINTAINER=ZUNbado <zunbado-zaspanel@acs.li>
