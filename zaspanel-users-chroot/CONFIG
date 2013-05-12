@@ -1,0 +1,7 @@
+PACKAGE=zaspanel-users-chroot
+VERSION=0.1.$(shell cat MINOR_VERSION)
+ARCH=all
+SECTION=other
+PRIORITY=optional
+DEPENDS=lshell
+MAINTAINER=ZUNbado <zunbado-zaspanel@acs.li>

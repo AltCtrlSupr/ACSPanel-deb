@@ -1,0 +1,16 @@
+#!/bin/bash
+
+
+if [ "$1" = "purge" -a -e /usr/share/debconf/confmodule ]; then
+    # Source debconf library.
+    . /usr/share/debconf/confmodule
+    # Remove my changes to the db.
+    db_purge
+fi
+
+FILES="00-mysql-general.conf 01-mysql.conf 02-mysql-query.conf"
+for FILE in $FILES; do
+        if [ -L /etc/powerdns/pdns.d/$FILE ]; then
+                rm -f /etc/powerdns/pdns.d/$FILE
+        fi
+done

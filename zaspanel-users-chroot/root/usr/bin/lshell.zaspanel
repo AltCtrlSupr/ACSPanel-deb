@@ -1,0 +1,2 @@
+#!/bin/sh
+/usr/bin/lshell --config /etc/zaspanel/users-chroot/lshell.conf

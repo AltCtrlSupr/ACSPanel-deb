@@ -1,0 +1,29 @@
+#!/bin/bash
+. /usr/share/debconf/confmodule
+db_version 2.0
+db_capb backup
+
+keys=( server database user pass path )
+maxkeys=$((${#keys[@]} -1))
+
+index=0
+while [ "$index" -ge 0 -a "$index" -le $maxkeys ]; do
+		  db_input high zaspanel-srv-apache2/${keys[$index]} || true
+		  if db_go; then
+			  index=$(($index + 1))
+		  else
+			  index=$(($index - 1))
+		  fi
+done
+
+for key in ${keys[*]}; do
+	db_get zaspanel-srv-apache2/$key
+	value=$RET
+	if [ "x$value" != "x" ]; then
+		sed -i -e "s|^$key.*$|$key = $value|" /etc/zaspanel/apache2-srv/conf.ini
+	fi
+done
+
+if [ ! -L /etc/apache2/conf.d/perl-vhost.conf ]; then
+	ln -s /etc/zaspanel/apache2-srv/perl-vhost.conf /etc/apache2/conf.d/perl-vhost.conf
+fi

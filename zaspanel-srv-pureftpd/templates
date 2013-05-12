@@ -1,0 +1,19 @@
+Template: zaspanel-srv-pureftpd/server
+Type: string
+Default:
+Description: MySQL Host for pureftpd
+
+Template: zaspanel-srv-pureftpd/user
+Type: string
+Default:
+Description: MySQL User for pureftpd
+
+Template: zaspanel-srv-pureftpd/password
+Type: password
+Default:
+Description: MySQL password for pureftpd
+
+Template: zaspanel-srv-pureftpd/database
+Type: string
+Default:
+Description: MySQL Database for pureftpd

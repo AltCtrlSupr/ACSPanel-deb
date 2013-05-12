@@ -1,0 +1,7 @@
+PACKAGE=zaspanel-users-mysql
+VERSION=0.1.$(shell cat MINOR_VERSION)
+ARCH=all
+SECTION=other
+PRIORITY=optional
+DEPENDS=libnss-mysql-bg
+MAINTAINER=ZUNbado <zunbado-zaspanel@acs.li>

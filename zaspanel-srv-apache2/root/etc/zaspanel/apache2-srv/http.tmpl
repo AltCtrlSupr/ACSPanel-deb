@@ -1,0 +1,31 @@
+# HTTP Server
+<VirtualHost *:80>
+        ServerName %name%:80
+        %aliases%
+        ErrorLog "%host_dir%/%name%/_sys/logs/error_log"
+        CustomLog "%host_dir%/%name%/_sys/logs/access_log" combined
+
+        DocumentRoot "%host_dir%/%name%/httpdocs"
+        <Directory "%host_dir%/%name%/httpdocs">
+                Options FollowSymLinks ExecCGI Indexes
+                AllowOverride AuthConfig Limit
+                order allow,deny
+                Allow from All
+        </Directory>
+
+        # PHP Configuration
+        <IfModule mod_php5.c>
+                php_admin_value open_basedir "%host_dir%/%name%:/srv/httpd/error:/tmp"
+                php_admin_value upload_tmp_dir "%host_dir%/%name%/_sys/tmp"
+                php_admin_value session.safe_path "%host_dir%/%name%/_sys/sessions"
+        </IfModule>
+
+        # Mod_Security
+        <IfModule mod_security2.c>
+                SecUploadDir "%host_dir%/%name%/_sys/tmp"
+        </IfModule>
+
+        # Additional configuration
+        %cfg%
+	%protected%
+</VirtualHost>

@@ -1,0 +1,8 @@
+Origin: Your Name
+Label: Your own label
+Suite: stable
+Codename: squeeze
+Version: 3.1
+Architectures: i386 amd64
+Components: main non-free contrib
+Description: Your description
