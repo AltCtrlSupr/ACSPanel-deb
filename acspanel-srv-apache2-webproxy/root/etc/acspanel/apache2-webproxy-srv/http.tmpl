@@ -5,6 +5,8 @@
         ErrorLog "%host_dir%/%name%/_sys/logs/error_log"
         CustomLog "%host_dir%/%name%/_sys/logs/access_log" combined
 
+	ProxyPreserveHost On
+
 	ProxyPass / http://%dest_ip%
 
         # Additional configuration

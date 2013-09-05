@@ -8,7 +8,7 @@ maxkeys=$((${#keys[@]} -1))
 
 index=0
 while [ "$index" -ge 0 -a "$index" -le $maxkeys ]; do
-		  db_input high acspanel-srv-apache2/${keys[$index]} || true
+		  db_input high acspanel-srv-apache2-webproxy/${keys[$index]} || true
 		  if db_go; then
 			  index=$(($index + 1))
 		  else
@@ -17,13 +17,13 @@ while [ "$index" -ge 0 -a "$index" -le $maxkeys ]; do
 done
 
 for key in ${keys[*]}; do
-	db_get acspanel-srv-apache2/$key
+	db_get acspanel-srv-apache2-webproxy/$key
 	value=$RET
 	if [ "x$value" != "x" ]; then
 		sed -i -e "s|^$key.*$|$key = $value|" /etc/acspanel/apache2-webproxy-srv/conf.ini
 	fi
 done
 
-if [ ! -L /etc/apache2/conf.d/perl-vhost.conf ]; then
-	ln -s /etc/acspanel/apache2-webproxy-srv/perl-vhost.conf /etc/apache2/conf.d/perl-vhost.conf
+if [ ! -L /etc/apache2/conf.d/perl-webproxy.conf ]; then
+	ln -s /etc/acspanel/apache2-webproxy-srv/perl-vhost.conf /etc/apache2/conf.d/perl-webproxy.conf
 fi
