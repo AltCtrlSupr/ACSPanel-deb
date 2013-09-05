@@ -1,0 +1,14 @@
+#!/bin/bash
+
+
+if [ "$1" = "purge" -a -e /usr/share/debconf/confmodule ]; then
+    # Source debconf library.
+    . /usr/share/debconf/confmodule
+    # Remove my changes to the db.
+    db_purge
+fi
+
+
+if [ -L /etc/apache2/conf.d/perl-vhost.conf ]; then
+	rm -f /etc/apache2/conf.d/perl-vhost.conf
+fi

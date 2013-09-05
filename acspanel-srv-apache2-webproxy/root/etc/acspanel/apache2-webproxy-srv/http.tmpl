@@ -1,0 +1,13 @@
+# HTTP Server
+<VirtualHost *:80>
+        ServerName %name%:80
+        %aliases%
+        ErrorLog "%host_dir%/%name%/_sys/logs/error_log"
+        CustomLog "%host_dir%/%name%/_sys/logs/access_log" combined
+
+	ProxyPass / http://%dest_ip%
+
+        # Additional configuration
+        %cfg%
+	%protected%
+</VirtualHost>
