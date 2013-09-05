@@ -27,3 +27,5 @@ done
 if [ ! -L /etc/apache2/conf.d/perl-webproxy.conf ]; then
 	ln -s /etc/acspanel/apache2-webproxy-srv/perl-vhost.conf /etc/apache2/conf.d/perl-webproxy.conf
 fi
+
+a2enmod proxy_http
