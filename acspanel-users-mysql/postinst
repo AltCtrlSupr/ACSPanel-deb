@@ -12,7 +12,7 @@ maxkeys=$((${#keys[@]} -1))
 
 index=0
 while [ "$index" -ge 0 -a "$index" -le $maxkeys ]; do
-                  db_input high acspanel-srv-apache2/${keys[$index]} || true
+                  db_input high acspanel-users-mysql/${keys[$index]} || true
                   if db_go; then
                           index=$(($index + 1))
                   else   
@@ -21,7 +21,7 @@ while [ "$index" -ge 0 -a "$index" -le $maxkeys ]; do
 done
 
 for key in ${keys[*]}; do
-        db_get acspanel-srv-apache2/$key
+        db_get acspanel-users-mysql/$key
         value=$RET
         if [ "x$value" != "x" ]; then
 		sed -i -e "s|^$key.*$|$key\t$value|" $ZETC/libnss-mysql.cfg
