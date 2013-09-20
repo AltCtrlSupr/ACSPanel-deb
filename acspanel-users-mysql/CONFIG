@@ -1,5 +1,5 @@
 PACKAGE=acspanel-users-mysql
-VERSION=0.2.$(shell cat MINOR_VERSION)
+VERSION=0.3.$(shell cat MINOR_VERSION)
 ARCH=all
 SECTION=other
 PRIORITY=optional
