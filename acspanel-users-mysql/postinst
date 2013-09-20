@@ -25,6 +25,7 @@ for key in ${keys[*]}; do
         value=$RET
         if [ "x$value" != "x" ]; then
 		sed -i -e "s|^$key.*$|$key\t$value|" $ZETC/libnss-mysql.cfg
+		sed -i -e "s|^$key.*$|$key\t$value|" $ZETC/libnss-mysql-root.cfg
         fi
 done
 
