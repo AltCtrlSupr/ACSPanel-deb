@@ -1,0 +1,19 @@
+Template: acspanel-users-mysql/host
+Type: string
+Default:
+Description: MySQL Host for libnss-mysql
+
+Template: acspanel-users-mysql/username
+Type: string
+Default:
+Description: MySQL User for libnss-mysql
+
+Template: acspanel-users-mysql/password
+Type: password
+Default:
+Description: MySQL password for libnss-mysql
+
+Template: acspanel-users-mysql/database
+Type: string
+Default:
+Description: MySQL Database for libnss-mysql
