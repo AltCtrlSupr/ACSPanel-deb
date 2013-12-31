@@ -1,0 +1,7 @@
+PACKAGE=acspanel-client-ddns
+VERSION=0.1.$(shell cat MINOR_VERSION)
+ARCH=all
+SECTION=dns
+PRIORITY=optional
+DEPENDS=curl
+MAINTAINER=ZUNbado <zunbado-acspanel@acs.li>

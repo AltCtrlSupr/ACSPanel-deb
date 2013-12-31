@@ -1,0 +1,5 @@
+# Name to check/update
+DNSNAME=
+
+# Force to IP, otherwise check/update from http request
+IP=

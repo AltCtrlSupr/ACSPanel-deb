@@ -1,0 +1,11 @@
+#!/bin/bash
+source ddns_common
+
+login
+for H in /etc/acspanel/ddns-client/hosts.d/*.conf; do
+	if [ -e $H ]; then 
+		source $H
+		echo "Updating DNS: $DNSNAME"
+	fi
+done
+clean

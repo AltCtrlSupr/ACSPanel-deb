@@ -1,0 +1,22 @@
+#!/bin/bash
+source ddns_common
+
+login
+LIST=$($CURL $cpurl/GETDDNSLIST)
+for H in $LIST; do
+	DLIST="$DLIST $H $H"
+done
+EXIT=0
+while [ 0 ]; do
+	if [ $EXIT -eq 1 ]; then 
+		clear; exit; 
+	else
+		HOST=$(dialog --output-fd 1 --title "ACS Panel DDNS configuration" --menu "Menu" 13 50 6 $DLIST)
+		if [ $? -eq 1 ]; then
+			EXIT=1
+		else
+			confhost
+		fi
+	fi
+done
+clean

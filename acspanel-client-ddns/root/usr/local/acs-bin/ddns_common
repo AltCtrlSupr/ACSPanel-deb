@@ -1,0 +1,39 @@
+#!/bin/bash
+if  [ ! -e /etc/acspanel/ddns-client/config ]; then
+	echo "File config not found";
+	exit 1
+fi
+
+source /etc/acspanel/ddns-client/config
+
+TMP=$(tempfile)
+CURL="curl -b $TMP -c $TMP -s"
+
+login(){
+	TOKEN=$($CURL $cpurl/login|grep _csrf_token|cut -d\" -f6)
+	RESULT=$($CURL -d "_username=$user&_password=$passwd&_csrf_token=$TOKEN&_submit=Login" $cpurl/login_check|grep Redirecting|grep -v title|cut -d\" -f2)
+
+	if [ -n "$RESULT" ]; then
+	        if [ "$RESULT" = "${cpurl}/" ]; then
+	                echo "Login OK"
+	        fi
+	fi
+}
+
+clean(){
+	rm -f $TMP
+}
+
+confhost(){
+	if [ -z "$HOST" ]; then break; fi
+	if [ -e /etc/acspanel/ddns-client/hosts.d/$HOST.conf ]; then
+		source /etc/acspanel/ddns-client/hosts.d/$HOST.conf
+	fi
+	NEWIP=$(dialog --output-fd 1 --inputbox "Force IP" 8 40 "$IP")
+	
+	echo "DNSNAME=$HOST" > /etc/acspanel/ddns-client/hosts.d/$HOST.conf
+	echo "IP=$NEWIP" >> /etc/acspanel/ddns-client/hosts.d/$HOST.conf
+
+	IP=
+	DNSNAME=
+}

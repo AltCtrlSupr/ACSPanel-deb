@@ -1,0 +1,14 @@
+Template: acspanel-client-ddns/cpurl
+Type: string
+Default:
+Description: ACS Panel URL
+
+Template: acspanel-client-ddns/user
+Type: string
+Default:
+Description: ACS Panel User
+
+Template: acspanel-client-ddns/passwd
+Type: password
+Default:
+Description: ACS Panel Password
